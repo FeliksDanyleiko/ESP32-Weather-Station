@@ -28,22 +28,22 @@ Status: Working
 The TFT display has been connected to the ESP32-S3 and tested.
 
 ### Stage 2 — BMP280 Sensor
-Status: Not started
+Status: Working
 
 Connect the sensor using I2C and read pressure and temperature measurements.
 
 ### Stage 3 — Joystick
-Status: Not started
+Status: Working
 
 Read joystick movements and detect button presses.
 
 ### Stage 4 — Menu System
-Status: Not started
+Status: Working
 
 Create an interactive menu with pressure and temperature pages.
 
 ### Stage 5 — Elevation Tracking
-Status: Not started
+Status: In proress 
 
 Implement sea-level pressure calibration and calculate elevation.
 
