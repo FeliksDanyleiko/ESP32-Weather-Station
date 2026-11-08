@@ -1,4 +1,3 @@
-
 #include <Arduino.h>
 #include <Adafruit_GFX.h>
 #include <Adafruit_ST7789.h>
@@ -11,7 +10,7 @@
 #define SCREEN_W 320
 #define SCREEN_H 240
 
-Adafruit_ST7789 tft = Adafruit_ST7789(TFT_CS, TFT_DC, TFT_RST);
+Adafruit_ST7789 tft(TFT_CS, TFT_DC, TFT_RST);
 GFXcanvas16* canvas = nullptr;
 
 void showFrame() {
@@ -48,14 +47,15 @@ void drawMenu(int selected) {
   const char* options[] = {
     "Pressure (hPa)",
     "Pressure (mbar)",
-    "Temperature (C)"
+    "Temperature (C)",
+    "Elevation"
   };
 
-  for (int i = 0; i < 3; i++) {
-    screen.setCursor(20, 80 + i * 40);
+  for (int i = 0; i < 4; i++) {
+    screen.setCursor(20, 70 + i * 35);
 
     if (i == selected) {
-      screen.setTextColor(ST77XX_ORANGE);
+      screen.setTextColor(ST77XX_YELLOW);
       screen.print("> ");
     } else {
       screen.setTextColor(ST77XX_WHITE);
@@ -74,7 +74,6 @@ void drawPage(int selected, bool sensorReady, float value) {
   screen.fillScreen(ST77XX_BLACK);
   screen.setTextColor(ST77XX_WHITE);
   screen.setTextSize(2);
-
   screen.setCursor(20, 20);
 
   if (selected == 0) {
@@ -83,8 +82,11 @@ void drawPage(int selected, bool sensorReady, float value) {
   else if (selected == 1) {
     screen.println("Pressure (mbar)");
   }
-  else {
+  else if (selected == 2) {
     screen.println("Temperature (C)");
+  }
+  else {
+    screen.println("Elevation (m)");
   }
 
   if (!sensorReady) {
@@ -104,9 +106,43 @@ void drawPage(int selected, bool sensorReady, float value) {
   else if (selected == 1) {
     screen.println(" mbar");
   }
-  else {
+  else if (selected == 2) {
     screen.println(" C");
   }
+  else {
+    screen.println(" m");
+  }
+
+  showFrame();
+}
+
+void drawCalibration(float seaLevelPressure) {
+  Adafruit_GFX& screen = canvas ? (Adafruit_GFX&)*canvas : (Adafruit_GFX&)tft;
+
+  screen.fillScreen(ST77XX_BLACK);
+  screen.setTextColor(ST77XX_WHITE);
+  screen.setTextSize(2);
+
+  screen.setCursor(20, 20);
+  screen.println("Elevation Setup");
+
+  screen.setCursor(20, 65);
+  screen.println("Pressure at 0 m:");
+
+  screen.setTextColor(ST77XX_YELLOW);
+  screen.setTextSize(3);
+  screen.setCursor(20, 105);
+  screen.print(seaLevelPressure, 2);
+
+  screen.setTextSize(2);
+  screen.println(" hPa");
+
+  screen.setTextColor(ST77XX_WHITE);
+  screen.setCursor(20, 165);
+  screen.println("UP/DOWN: Adjust");
+
+  screen.setCursor(20, 195);
+  screen.println("PRESS: Confirm");
 
   showFrame();
 }

@@ -1,4 +1,3 @@
-
 #include <Arduino.h>
 #include "display.h"
 #include "joystick.h"
@@ -6,16 +5,18 @@
 
 int selected = 0;
 bool inMenu = true;
+bool inCalibration = false;
 bool sensorReady = false;
 
-unsigned long lastMove = 0;
+float seaLevelPressure = 1013.25f;
+
 unsigned long lastUpdate = 0;
 
 void showPage() {
   float value = 0;
 
   if (sensorReady) {
-    value = readSensorValue(selected);
+    value = readSensorValue(selected, seaLevelPressure);
   }
 
   drawPage(selected, sensorReady, value);
@@ -32,34 +33,58 @@ void setup() {
 }
 
 void loop() {
-  int y = readJoystickY();
+  JoystickAction action = readJoystick();
 
-  if (inMenu && millis() - lastMove > 250) {
-    if (y < 1000) {
-      selected = (selected + 2) % 3;
+  if (inMenu) {
+    if (action == UP) {
+      selected = (selected + 3) % 4;
       drawMenu(selected);
-      lastMove = millis();
     }
-    else if (y > 3000) {
-      selected = (selected + 1) % 3;
+    else if (action == DOWN) {
+      selected = (selected + 1) % 4;
       drawMenu(selected);
-      lastMove = millis();
+    }
+    else if (action == PRESS) {
+      inMenu = false;
+
+      if (selected == 3) {
+        inCalibration = true;
+        drawCalibration(seaLevelPressure);
+      }
+      else {
+        showPage();
+        lastUpdate = millis();
+      }
     }
   }
 
-  if (joystickPressed()) {
-    inMenu = !inMenu;
-
-    if (inMenu) {
-      drawMenu(selected);
-    } else {
+  else if (inCalibration) {
+    if (action == UP) {
+      seaLevelPressure += 0.5f;
+      seaLevelPressure = constrain(seaLevelPressure, 850.0f, 1100.0f);
+      drawCalibration(seaLevelPressure);
+    }
+    else if (action == DOWN) {
+      seaLevelPressure -= 0.5f;
+      seaLevelPressure = constrain(seaLevelPressure, 850.0f, 1100.0f);
+      drawCalibration(seaLevelPressure);
+    }
+    else if (action == PRESS) {
+      inCalibration = false;
       showPage();
       lastUpdate = millis();
     }
   }
 
-  if (!inMenu && millis() - lastUpdate >= 1000) {
-    showPage();
-    lastUpdate = millis();
+  else {
+    if (action == PRESS) {
+      inMenu = true;
+      drawMenu(selected);
+    }
+
+    if (!inMenu && millis() - lastUpdate >= 1000) {
+      showPage();
+      lastUpdate = millis();
+    }
   }
 }

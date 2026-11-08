@@ -1,4 +1,3 @@
-
 #include <Arduino.h>
 #include "joystick.h"
 
@@ -7,22 +6,45 @@
 #define JOY_SW 7
 
 bool lastButton = HIGH;
+bool stableButton = HIGH;
+
+unsigned long lastDebounce = 0;
+unsigned long lastMove = 0;
 
 void initJoystick() {
   pinMode(JOY_SW, INPUT_PULLUP);
   analogReadResolution(12);
 }
 
-int readJoystickY() {
-  return analogRead(JOY_Y);
-}
-
-bool joystickPressed() {
+JoystickAction readJoystick() {
   bool button = digitalRead(JOY_SW);
 
-  bool pressed = (lastButton == HIGH && button == LOW);
+  if (button != lastButton) {
+    lastDebounce = millis();
+  }
 
   lastButton = button;
 
-  return pressed;
+  if (millis() - lastDebounce > 30 && button != stableButton) {
+    stableButton = button;
+
+    if (stableButton == LOW) {
+      return PRESS;
+    }
+  }
+
+  int y = analogRead(JOY_Y);
+
+  if (millis() - lastMove > 250) {
+    if (y < 1000) {
+      lastMove = millis();
+      return UP;
+    }
+    else if (y > 3000) {
+      lastMove = millis();
+      return DOWN;
+    }
+  }
+
+  return NONE;
 }
