@@ -1,0 +1,187 @@
+(pcb "/home/felix/study/ESP32-Weather-Station/hardware/WeatherStationPCB/temp-freerouting.dsn"
+  (parser
+    (string_quote ")
+    (space_in_quoted_tokens on)
+    (host_cad "KiCad's Pcbnew")
+    (host_version "10.0.8")
+  )
+  (resolution um 10)
+  (unit um)
+  (structure
+    (layer F.Cu
+      (type signal)
+      (property
+        (index 0)
+      )
+    )
+    (layer B.Cu
+      (type signal)
+      (property
+        (index 1)
+      )
+    )
+    (boundary
+      (path pcb 0  115000 -105000  10000 -105000  10000 -10000  115000 -10000
+            115000 -105000)
+    )
+    (via "Via[0-1]_600:300_um")
+    (rule
+      (width 200)
+      (clearance 200)
+      (clearance 50 (type smd_smd))
+    )
+  )
+  (placement
+    (component Capacitor_SMD:C_0805_2012Metric
+      (place C2 58000 -94000 front 0 (PN 100n))
+      (place R1 48000 -68000 front 0 (PN 4.7k))
+      (place R2 48000 -76000 front 0 (PN 4.7k))
+      (place C1 51000 -94000 front 0 (PN 100n))
+      (place R3 48000 -84000 front 0 (PN 0R))
+    )
+    (component Connector_PinHeader_2.54mm:PinHeader_1x22_P2.54mm_Vertical
+      (place J2 90400 -25000 front 0 (PN DevKit_Header_J3))
+      (place J1 65000 -25000 front 0 (PN DevKit_Header_J1))
+    )
+    (component Connector_PinHeader_2.54mm:PinHeader_1x06_P2.54mm_Vertical
+      (place J4 23000 -66000 front 0 (PN BMP280_HEADER))
+    )
+    (component Connector_PinHeader_2.54mm:PinHeader_1x08_P2.54mm_Vertical
+      (place J3 23000 -28000 front 0 (PN TFT_ST7789_HEADER))
+    )
+    (component Connector_PinHeader_2.54mm:PinHeader_1x05_P2.54mm_Vertical
+      (place J5 23000 -85000 front 0 (PN KY023_HEADER))
+    )
+  )
+  (library
+    (image Capacitor_SMD:C_0805_2012Metric
+      (outline (path signal 120  -1500 900  1500 900  1500 -900  -1500 -900  -1500 900))
+      (pin RoundRect[T]Pad_1100.000000x1300.000000_165.628000_um_0.000000_0 1 -950 0)
+      (pin RoundRect[T]Pad_1100.000000x1300.000000_165.628000_um_0.000000_0 2 950 0)
+    )
+    (image Connector_PinHeader_2.54mm:PinHeader_1x22_P2.54mm_Vertical
+      (outline (path signal 120  -1600 1500  1600 1500))
+      (pin Round[A]Pad_1700.000000_um 1 0 0)
+      (pin Round[A]Pad_1700.000000_um 2 0 -2540)
+      (pin Round[A]Pad_1700.000000_um 3 0 -5080)
+      (pin Round[A]Pad_1700.000000_um 4 0 -7620)
+      (pin Round[A]Pad_1700.000000_um 5 0 -10160)
+      (pin Round[A]Pad_1700.000000_um 6 0 -12700)
+      (pin Round[A]Pad_1700.000000_um 7 0 -15240)
+      (pin Round[A]Pad_1700.000000_um 8 0 -17780)
+      (pin Round[A]Pad_1700.000000_um 9 0 -20320)
+      (pin Round[A]Pad_1700.000000_um 10 0 -22860)
+      (pin Round[A]Pad_1700.000000_um 11 0 -25400)
+      (pin Round[A]Pad_1700.000000_um 12 0 -27940)
+      (pin Round[A]Pad_1700.000000_um 13 0 -30480)
+      (pin Round[A]Pad_1700.000000_um 14 0 -33020)
+      (pin Round[A]Pad_1700.000000_um 15 0 -35560)
+      (pin Round[A]Pad_1700.000000_um 16 0 -38100)
+      (pin Round[A]Pad_1700.000000_um 17 0 -40640)
+      (pin Round[A]Pad_1700.000000_um 18 0 -43180)
+      (pin Round[A]Pad_1700.000000_um 19 0 -45720)
+      (pin Round[A]Pad_1700.000000_um 20 0 -48260)
+      (pin Round[A]Pad_1700.000000_um 21 0 -50800)
+      (pin Round[A]Pad_1700.000000_um 22 0 -53340)
+    )
+    (image Connector_PinHeader_2.54mm:PinHeader_1x06_P2.54mm_Vertical
+      (outline (path signal 120  -1600 1500  1600 1500))
+      (pin Round[A]Pad_1700.000000_um 1 0 0)
+      (pin Round[A]Pad_1700.000000_um 2 0 -2540)
+      (pin Round[A]Pad_1700.000000_um 3 0 -5080)
+      (pin Round[A]Pad_1700.000000_um 4 0 -7620)
+      (pin Round[A]Pad_1700.000000_um 5 0 -10160)
+      (pin Round[A]Pad_1700.000000_um 6 0 -12700)
+    )
+    (image Connector_PinHeader_2.54mm:PinHeader_1x08_P2.54mm_Vertical
+      (outline (path signal 120  -1600 1500  1600 1500))
+      (pin Round[A]Pad_1700.000000_um 1 0 0)
+      (pin Round[A]Pad_1700.000000_um 2 0 -2540)
+      (pin Round[A]Pad_1700.000000_um 3 0 -5080)
+      (pin Round[A]Pad_1700.000000_um 4 0 -7620)
+      (pin Round[A]Pad_1700.000000_um 5 0 -10160)
+      (pin Round[A]Pad_1700.000000_um 6 0 -12700)
+      (pin Round[A]Pad_1700.000000_um 7 0 -15240)
+      (pin Round[A]Pad_1700.000000_um 8 0 -17780)
+    )
+    (image Connector_PinHeader_2.54mm:PinHeader_1x05_P2.54mm_Vertical
+      (outline (path signal 120  -1600 1500  1600 1500))
+      (pin Round[A]Pad_1700.000000_um 1 0 0)
+      (pin Round[A]Pad_1700.000000_um 2 0 -2540)
+      (pin Round[A]Pad_1700.000000_um 3 0 -5080)
+      (pin Round[A]Pad_1700.000000_um 4 0 -7620)
+      (pin Round[A]Pad_1700.000000_um 5 0 -10160)
+    )
+    (padstack Round[A]Pad_1700.000000_um
+      (shape (circle F.Cu 1700))
+      (shape (circle B.Cu 1700))
+      (attach off)
+    )
+    (padstack RoundRect[T]Pad_1100.000000x1300.000000_165.628000_um_0.000000_0
+      (shape (polygon F.Cu 0  -550.628 485  -538.02 548.383  -502.117 602.117  -448.383 638.02
+            -385 650.628  385 650.628  448.383 638.02  502.117 602.117  538.02 548.383
+            550.628 485  550.628 -485  538.02 -548.383  502.117 -602.117
+            448.383 -638.02  385 -650.628  -385 -650.628  -448.383 -638.02
+            -502.117 -602.117  -538.02 -548.383  -550.628 -485  -550.628 485))
+      (attach off)
+    )
+    (padstack "Via[0-1]_600:300_um"
+      (shape (circle F.Cu 600))
+      (shape (circle B.Cu 600))
+      (attach off)
+    )
+  )
+  (network
+    (net +3V3
+      (pins C2-1 J4-1 J4-5 R1-2 J1-1 J1-2 R2-2 C1-1 J3-1 J5-2 R3-2)
+    )
+    (net GND
+      (pins C2-2 J2-1 J2-21 J2-22 J4-2 J4-6 J1-22 C1-2 J3-2 J5-1)
+    )
+    (net JOY_X
+      (pins J2-4 J5-3)
+    )
+    (net JOY_Y
+      (pins J2-5 J5-4)
+    )
+    (net I2C_SCL
+      (pins J4-3 J1-15 R2-1)
+    )
+    (net I2C_SDA
+      (pins J4-4 R1-1 J1-12)
+    )
+    (net TFT_CS
+      (pins J1-4 J3-5)
+    )
+    (net TFT_DC
+      (pins J1-5 J3-6)
+    )
+    (net TFT_RST
+      (pins J1-6 J3-7)
+    )
+    (net JOY_SW
+      (pins J1-7 J5-5)
+    )
+    (net SPI_MOSI
+      (pins J1-17 J3-4)
+    )
+    (net SPI_SCK
+      (pins J1-18 J3-3)
+    )
+    (net TFT_BL
+      (pins J3-8 R3-1)
+    )
+    (class kicad_default +3V3 GND I2C_SCL I2C_SDA JOY_SW JOY_X JOY_Y SPI_MOSI
+      SPI_SCK TFT_BL TFT_CS TFT_DC TFT_RST
+      (circuit
+        (use_via "Via[0-1]_600:300_um")
+      )
+      (rule
+        (width 200)
+        (clearance 200)
+      )
+    )
+  )
+  (wiring
+  )
+)
