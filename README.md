@@ -43,12 +43,12 @@ Status: Working
 Create an interactive menu with pressure and temperature pages.
 
 ### Stage 5 — Elevation Tracking
-Status: In proress 
+Status: Working 
 
 Implement sea-level pressure calibration and calculate elevation.
 
 ### Stage 6 — Schematic and PCB
-Status: Not started
+Status: Done
 
 Design the circuit schematic and custom PCB layout.
 
@@ -60,4 +60,4 @@ Feature branches will be created as development progresses.
 
 ## Project Status
 
-Currently working on the TFT display and preparing BMP280 integration.
+Finished
